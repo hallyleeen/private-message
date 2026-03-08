@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Message Vault</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #1a1a1a; margin: 0; }
+        .card { background: #ffffff; padding: 2.5rem; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); width: 340px; text-align: center; }
+        h2 { color: #333; margin-bottom: 1.5rem; }
+        input { padding: 12px; width: 90%; margin-bottom: 12px; border: 2px solid #eee; border-radius: 8px; outline: none; transition: 0.3s; }
+        input:focus { border-color: #6c5ce7; }
+        button { padding: 12px 25px; background-color: #6c5ce7; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 10px; }
+        button:hover { background-color: #a29bfe; }
+        #message { margin-top: 25px; line-height: 1.6; color: #2d3436; min-height: 60px; font-size: 1.1rem; }
+        .error { color: #ff7675; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>🔐 Private Access</h2>
+    <input type="text" id="nickname" placeholder="Your First Name">
+    <input type="password" id="passkey" placeholder="Callsign">
+    <button onclick="checkAccess()">Unlock Message</button>
+    <div id="message"></div>
+</div>
+
+<script>
+    function checkAccess() {
+        const name = document.getElementById('nickname').value.trim();
+        const code = document.getElementById('passkey').value.trim();
+        const display = document.getElementById('message');
+
+        // --- CUSTOMIZE THESE TWO ---
+        const targetName = "Meir";
+        const targetPass = "Tangi"; 
+        // ---------------------------
+
+        if (name === "" || code === "") {
+            display.innerHTML = "<span class='error'>Please fill in both fields.</span>";
+            return;
+        }
+
+        // Check if both the name and the password match
+        if (name.toLowerCase() === targetName.toLowerCase() && code === targetPass) {
+            display.innerHTML = `
+                <div style="color: #00b894; font-weight: bold;">Access Granted!</div>
+                Hello Tangi,<br>
+               <strong>Love, I really miss you and I still believe in us. But if you truly want me in your life, please keep the promises you've made to me. Take care of yourself through all this, and show me you're fighting for us too. I love you so much, and I'm here waiting—but I need to see your heart in actions. </strong> 
+            `;
+        } else {
+            display.innerHTML = "<span class='error'>Access Denied. Incorrect name or password.</span>";
+        }
+    }
+</script>
+
+</body>
+</html>
